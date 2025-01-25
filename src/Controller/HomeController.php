@@ -7,12 +7,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\User;
+use App\Service\SnoopDogg;
 
 final class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(EntityManagerInterface $entityManager): Response
+    public function index(EntityManagerInterface $entityManager, SnoopDogg $snoopDogg): Response
     {
+        $snoopDogg->say(); exit;
         $isAuth = (!$this->getUser()) ? false : true;
 
         $user = $entityManager->getRepository(User::class)->findOneBy(['firstname' => 'Xena']);
