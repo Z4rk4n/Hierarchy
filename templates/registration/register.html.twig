@@ -4,15 +4,28 @@
 
 {% block body %}
     <h1>Register</h1>
+    <hr />
 
     {{ form_errors(registrationForm) }}
 
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
+        <p>
+            {{ form_row(registrationForm.email) }}
+        </p>
+        <p>
+            {{ form_row(registrationForm.firstname) }}
+        </p>
+        <p>
+            {{ form_row(registrationForm.lastname) }}
+        </p>
+        <p>
+            {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+        </p>
+        <p>
+            {{ form_row(registrationForm.agreeTerms) }}
+        </p>
 
         <button type="submit" class="btn">Register</button>
     {{ form_end(registrationForm) }}

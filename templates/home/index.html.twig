@@ -4,9 +4,22 @@
 
 {% block body %}
     <h1>Bienvenue</h1>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <hr />
+        <p>Email: {{ app.user.email }}</p>
+        <p>Firstname: {{ app.user.firstname }}</p>
+        <p>Lastname: {{ app.user.lastname }}</p>
+    {% endif %}
+    {% if is_granted("ROLE_ADMIN") %}
+        Congrate ! You are auth as ADMIN : Goto <a href="{{ path('app_admin_index') }}">ADMIN DASHBOARD</a>
+    {% endif %}
     <hr />
     <p>
-        <a href="{{ path('app_login') }}">Connexion</a>
-        <a href="{{ path('app_register') }}">Inscription</a>
+        {% if is_auth != true %}
+            <a href="{{ path('app_login') }}">Connexion</a>
+            <a href="{{ path('app_register') }}">Inscription</a>
+        {% else %}
+            <a href="/logout">Déconnexion</a>
+        {% endif %}
     </p>
 {% endblock %}
